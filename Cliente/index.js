@@ -5,6 +5,7 @@
 +---------------------------------------- 
 */
 
+var dir = require('../direcciones.js');
 const express = require('express'),
     app = express(),
     cors = require('cors')
@@ -17,11 +18,11 @@ const express = require('express'),
 | estará funcionando el servidor
 */
  
-port = process.env.PORT || 3000;
+port = process.env.PORT || dir.portCliente();
 //Cors 
 app.use(cors()) 
 app.listen(port, function () {
-    console.log('CORS-enabled web server listening on port: '+port.toString())
+    console.log('[Servicio Clientes] web server listening on port: '+port.toString())
 });
 
 /*
