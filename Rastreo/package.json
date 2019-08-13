@@ -1,0 +1,11 @@
+{
+  "name": "rastreo",
+  "version": "1.0.0",
+  "description": "Busca la ubicacion de los pilotos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "201513696",
+  "license": "ISC"
+}
