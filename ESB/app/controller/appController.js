@@ -52,6 +52,7 @@ exports.getLstClientes = async function (req, res) {
 | 1. Traer ubicacion del cliente por medio del servicio de clientes
 | 2. Contactar con el piloto uber 
 | 3. Registrar el viaje
+| 4. Responderle al cliente
 */
 
 /*
@@ -70,7 +71,7 @@ function obtenerUbicacion(nombre, password) {
       .catch((error) => {
         //Registrndo en el log
         Log.insert(-1, "Falló la ubicación del cliente: " + error);
-        resolve(error);
+        resolve({ id: -1 });
       })
   });
 }
@@ -79,21 +80,49 @@ function obtenerUbicacion(nombre, password) {
 +------------------ 
 | 2. Contactar con el piloto
 */
+function obtenerPiloto(ubicacion) {
+  return new Promise(resolve => {
 
+    axios.post(dir.ipPiloto() + "buscarPilotoDisponible", ubicacion)
+      .then((res) => {
+        //Registrndo en el log
+        Log.insert(ubicacion.id, "Buscando piloto disponible");
+        resolve(res.data);
+      })
+      .catch((error) => {
+        //Registrndo en el log
+        Log.insert(-1, "Falló la ubicación del piloto disponible: " + error);
+        resolve({ id: -1 });
+      })
+  });
+}
 
 /*
 +------------------ 
-| Metodo de la ruta
+| 3. Registrar viaje
+*/
+function obtenerPiloto(ubicacion) {
+  return new Promise(resolve => {
+ 
+  });
+}
+/*
++------------------ 
+| 4. Responderle al cliente
 */
 exports.obtenerUber = async function (req, res) {
   var ubicacion = await obtenerUbicacion(req.body.nombre, req.body.password);
-  retorno = "Su uber está en camino";
-
+  
   //validando si existe el usuario
-  if (ubicacion.id == -1)
-    retorno= "El usuario no está registrado y/o error en usuario/contraseña"; 
+  if (ubicacion.id == -1) 
+    res.send(JSON.stringify("El usuario no está registrado y/o error en usuario/contraseña"));
 
+  //buscando un piloto en la ubicación del cliente
+  var piloto= await obtenerPiloto(ubicacion);
+  if (ubicacion.idPiloto == -1) 
+    res.send(JSON.stringify("Lo sentimos, no hay pilotos disponibles por el momento :("));
 
+  console.log(piloto);
 
-  res.send(JSON.stringify(retorno));
+  res.send(JSON.stringify("piloto en llegada"));
 };
