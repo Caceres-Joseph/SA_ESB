@@ -18,7 +18,7 @@ exports.getLstViajes = function (req, res) {
 */
 exports.registrarViaje = function (req, res) {
 
-
+  console.log("[Rastreo]Registro de viaje");
   //limites de los numeros random 
 
   var retorno = { id: 1 };

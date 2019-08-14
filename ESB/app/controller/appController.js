@@ -201,7 +201,7 @@ exports.estadoLlegada = async function (req, res) {
     res.send(JSON.stringify("El usuario no está registrado y/o error en usuario/contraseña"));
 
 
-    console.log(cliente);
+    //console.log(cliente);
   //Registrando el viaje
   var estado = await getUbicacionPiloto(cliente);
   if (estado.id == -1)
