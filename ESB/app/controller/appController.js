@@ -152,6 +152,7 @@ exports.obtenerUber = async function (req, res) {
 
   var resp={
     mensaje:"Solicitud exitosa, en breves momentos llegará su piloto, por favor espere.",
+    idCliente: ubicacion.id,
     datosDelPiloto:piloto
   }
   res.send(JSON.stringify(resp));

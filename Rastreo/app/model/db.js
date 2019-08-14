@@ -64,13 +64,14 @@ Viaje.nuevo = function (viaje) {
 +---------------------------------------- 
 | Función que va reduciendo la distancia
 | en la que va llegando el conductor
+| La función se ejecuta cada 5 segundos
 */
 
 reducirDistancia();
 
 function reducirDistancia() {
 
-    console.log("[Rastreo]Reduciendo distancia");
+    //console.log("[Rastreo]Reduciendo distancia");
 
     setTimeout(() => {
         //recorrer todo el arreglo

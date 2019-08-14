@@ -24,5 +24,17 @@ module.exports = function (app) {
 
   app.route('/registrarViaje')
     .post(Viaje.registrarViaje);
+    
+  /*
+   +----------------------------------------
+   | Estado viaje
+   +---------------------------------------- 
+   | Muestra la ubicación del piloto y la distancia que le queda
+   */
+
+  app.route('/getEstadoViaje')
+  .post(Viaje.getEstadoViaje);
+
+
 
 };
