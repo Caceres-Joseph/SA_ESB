@@ -87,12 +87,13 @@ function obtenerUbicacion(nombre, password) {
 */
 exports.obtenerUber = async function (req, res) {
   var ubicacion = await obtenerUbicacion(req.body.nombre, req.body.password);
+  retorno = "Su uber está en camino";
 
   //validando si existe el usuario
   if (ubicacion.id == -1)
-    res.send(JSON.stringify("El usuario no está registrado y/o error en usuario/contraseña"));
+    retorno= "El usuario no está registrado y/o error en usuario/contraseña"; 
 
 
 
-  res.send(JSON.stringify("Su uber está en camino"));
+  res.send(JSON.stringify(retorno));
 };
