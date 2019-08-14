@@ -17,6 +17,7 @@ exports.getLstClientes = function (req, res) {
 +------------------- 
 */
 exports.getLocation = function (req, res) {
+  console.log("[Cliente]Obteniendo ubicación");
 
   //limites de los numeros random
   var min = 0;

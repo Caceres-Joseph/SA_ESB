@@ -49,6 +49,8 @@ exports.registrarViaje = function (req, res) {
 */
 
 exports.getEstadoViaje = function (req, res) {
+  
+  console.log("[Rastreo]estado del viaje");
   //Buscando si tiene viaje el usuario
   var retorno = { id: -1 };
   //console.log(req.body.id);

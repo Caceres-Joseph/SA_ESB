@@ -1,35 +1,25 @@
 # Servicio de Rastreo
 Es el servicio que se encarga de llevar un registro de todos los viajes, también la ubicación en tiempo real de la llegada de los pilotos con el cliente.
 
-
-# Modelo
-## Viaje
-### Atributos
-<!---->
+# Rutas 
+## Registrar un viaje (Post)
+### Parámetros
 | Nombre     | Descripción | Tipo    |
 | :---          |    :----   |          :--- |
-| idPiloto    | Id del piloto      | Int   |
-| idCliente    | Id del usuario      | Int   |
-| posX    | Posición en coordenada X      | Int   |
-| posY    | Posición en coordenada Y     | Int   |
-| estado    | Estado del viaje por si se cancela     | Int   |
-<!---->
+| idCliente    | Id del usuario     | Int   |
+| idPiloto    | Id del piloto     | Int   |
+| posX_cliente    | Ubicación del cliente en X      | Int   |
+| posY_cliente    | Ubicación del cliente en Y     | Int   | 
+| posX_piloto    | Ubicación del piloto en X      | Int   |
+| posY_piloto    | Ubicación del piloto en Y     | Int   | 
+```
+http://localhost:3300/registrarViaje
+```
+ 
+## Listar los rastreos en ejecución (Get)
 
-##Formato de retorno de pilotos
+Listado de todos los pilotos registrados en la base de datos
+```
+http://localhost:3300/getListaViajes
+```
 
-[
-    {
-        "idPiloto": 0,
-        "nombre": "Piloto0",
-        "placas": 0,
-        "posX": 6999,
-        "posY": 6730
-    },
-    {
-        "idPiloto": 1,
-        "nombre": "Piloto1",
-        "placas": 1,
-        "posX": 4777,
-        "posY": 9439
-    },
-]

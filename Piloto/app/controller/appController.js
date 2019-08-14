@@ -22,6 +22,7 @@ exports.getLstPilotos = function (req, res) {
 
 exports.buscarPiloto = function (req, res) {
 
+  console.log("[Pilotos]Buscando un piloto");
   //console.log(req.body);
   //posX = req.body.posX;
   //posY = req.body.posY;
