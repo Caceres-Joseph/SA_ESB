@@ -143,17 +143,69 @@ exports.obtenerUber = async function (req, res) {
   if (ubicacion.idPiloto == -1)
     res.send(JSON.stringify("Lo sentimos, no hay pilotos disponibles por el momento :("));
 
-    
+
   //Registrando el viaje
   var viaje = await registrarViaje(ubicacion, piloto);
   if (viaje.id == -1)
     res.send(JSON.stringify("Lo sentimos, usted ya solicitó un Uber, por favor espere la llegada de éste"));
-  console.log(piloto);
+   
 
-  var resp={
-    mensaje:"Solicitud exitosa, en breves momentos llegará su piloto, por favor espere.",
+  var resp = {
+    mensaje: "Solicitud exitosa, en breves momentos llegará su piloto, por favor espere.",
     idCliente: ubicacion.id,
-    datosDelPiloto:piloto
+    datosDelPiloto: piloto
   }
   res.send(JSON.stringify(resp));
+};
+
+
+/*
++----------------------------------------
+|Estado de llegada
++---------------------------------------- 
+| 1. Traer datos del cliente por medio del servicio de clientes
+| 2. Obtener la ubicación del uber 
+*/
+/*
++------------------ 
+| 2.Ubicación del piloto
+*/
+function getUbicacionPiloto(cliente) {
+
+
+  return new Promise(resolve => {
+    axios.post(dir.ipRastreo() + "getEstadoViaje", cliente)
+      .then((res) => {
+        //Registrndo en el log
+        Log.insert(cliente.id, "Obteniendo la ubicación del piloto del viaje");
+        resolve(res.data);
+      })
+      .catch((error) => {
+        //Registrndo en el log
+        Log.insert(cliente.id, "Falló la ubicación de la llegada del piloto " + error);
+        resolve({ id: -1 });
+      })
+  });
+}
+
+
+/*
++------------------ 
+| 2.Estado del a llegada
+*/
+exports.estadoLlegada = async function (req, res) {
+  var cliente = await obtenerUbicacion(req.body.nombre, req.body.password);
+
+  //validando si existe el usuario
+  if (cliente.id == -1)
+    res.send(JSON.stringify("El usuario no está registrado y/o error en usuario/contraseña"));
+
+
+    console.log(cliente);
+  //Registrando el viaje
+  var estado = await getUbicacionPiloto(cliente);
+  if (estado.id == -1)
+    res.send(JSON.stringify("Lo sentimos, usted no ha solicitado ningún Uber"));
+  
+  res.send(JSON.stringify(estado));
 };

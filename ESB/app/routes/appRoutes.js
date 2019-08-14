@@ -35,4 +35,14 @@ module.exports = function (app) {
   app.route('/buscarUber')
     .post(logs.obtenerUber);
 
+    
+  /*
+  +----------------------------------------
+  | Pedir Uber 
+  +---------------------------------------- 
+  | Busca un uber para el cliente
+  */
+  app.route('/obtenerEstadoLlegadaPiloto')
+  .post(logs.estadoLlegada);
+
 };

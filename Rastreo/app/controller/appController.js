@@ -51,9 +51,10 @@ exports.registrarViaje = function (req, res) {
 exports.getEstadoViaje = function (req, res) {
   //Buscando si tiene viaje el usuario
   var retorno = { id: -1 };
+  //console.log(req.body.id);
   for (let i = 0; i < Viaje.getAllViajes().length; i++) {
     const element = Viaje.getAllViajes()[i];
-    if (req.body.idCliente == element.idCliente) {
+    if (req.body.id == element.idCliente) {
       retorno = {
         general: element,
         llegada: {
