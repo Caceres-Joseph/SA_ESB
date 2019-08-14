@@ -6,46 +6,39 @@ var Cliente = require('../model/db.js');
 | Lista de clientes
 +------------------- 
 */
-var clientes = [
-  {
-    id: 12,
-    nombre: "Jhosef",
-    edad: 43
-  },
-  {
-    id: 3,
-    nombre: "Diego",
-    edad: 43
-  }
-];
 
 exports.getLstClientes = function (req, res) {
-
-
   res.send(JSON.stringify(Cliente.getAllCustomers()));
 };
 
-
 /*
 +------------------ 
-| Lista de clientes
+| Obtener ubicación
 +------------------- 
 */
-exports.killProcess = function (req, res) {
+exports.getLocation = function (req, res) {
 
+  //limites de los numeros random
+  var min = 0;
+  var max = 1000;
+  var retorno = { id: -1 };
 
-  var cmd = require('node-cmd');
+  for (let i = 0; i < Cliente.getAllCustomers().length; i++) {
+    const element = Cliente.getAllCustomers()[i];
+    if (element.nombre == req.body.nombre && element.password == req.body.password) {
 
-  cmd.get(
-    "kill -9 " + req.body.pid,
-    function (err, data, stderr) {
-
-
-      console.log("kill -9 " + req.body.pid);
-      res.send(JSON.stringify(data));
+      //genero ubicación random
+      var posX = Math.floor(Math.random() * (+max - +min)) + +min;
+      var posY = Math.floor(Math.random() * (+max - +min)) + +min;
+      retorno = {
+        id: element.id,
+        posX: posX,
+        posY: posY
+      }
+      break;
     }
-  );
+  }
 
-
-
+  //No está registrado el usuario
+  res.send(JSON.stringify(retorno));
 };

@@ -13,11 +13,7 @@ exports.getLogs = function (req, res) {
   console.log(dir.ipCliente())
   res.send(JSON.stringify(Log.getAllLogs()));
 };
-
-exports.getLogs2 = function (req, res) {
-  res.send(JSON.stringify(Log.getAllLogs()));
-};
-
+ 
 /*
 +----------------------------------------
 | Listar Usuarios
@@ -49,3 +45,27 @@ exports.getLstClientes = async function (req, res) {
   res.send(JSON.stringify(retorno));
 };
 
+/*
++----------------------------------------
+| Buscar Uber
++---------------------------------------- 
+| Buscar el uber del cliente
+*/
+
+//Primero revisar si el cliente está registrado
+function obtenerClientes() {
+  return new Promise(resolve => {
+
+    axios.get(dir.ipCliente() + "getListaClientes")
+      .then((res) => {
+        //Registrndo en el log
+        Log.insert(0, "Obteniendo el listado de clientes");
+        resolve(res.data);
+      })
+      .catch((error) => {
+        //Registrndo en el log
+        Log.insert(0, "Falló el listado de clientes: " + error);
+        resolve(error);
+      })
+  });
+}
