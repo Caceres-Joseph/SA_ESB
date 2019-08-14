@@ -28,11 +28,11 @@ Es el servicio que se encarga de llevar un registro de todos los clientes que ut
 ## Development Environment
 1. Build Dockerfile inside the Docker directory and run run.sh:
 ```docker
-$ cd ..
-$ cd Docker_Node/
-$ docker build -t nodeenv .
-$ cd ..
-$ sh run.sh
+{
+    "id": 1,
+    "posX": 859,
+    "posY": 952
+}
 ```
 2. Browse to your working directory, in this case:
 ```

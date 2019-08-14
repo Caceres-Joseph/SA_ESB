@@ -33,6 +33,6 @@ module.exports = function (app) {
   | Busca un uber para el cliente
   */
   app.route('/buscarUber')
-    .get(logs.getLstClientes);
+    .post(logs.obtenerUber);
 
 };

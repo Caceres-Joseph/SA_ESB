@@ -39,6 +39,5 @@ exports.getLocation = function (req, res) {
     }
   }
 
-  //No está registrado el usuario
   res.send(JSON.stringify(retorno));
 };

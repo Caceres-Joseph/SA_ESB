@@ -8,6 +8,7 @@
 var dir = require('../direcciones.js');
 const express = require('express'),
     app = express(),
+    bodyParser = require('body-parser');
     cors = require('cors')
     ;
 /*
@@ -19,8 +20,17 @@ const express = require('express'),
 */
 
 port = process.env.PORT || dir.portEsb();
+
 //Cors 
 app.use(cors())
+
+//para decodificar los post
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
+
+//Listener
 app.listen(port, function () {
     console.log('[ESB] web server listening on port: ' + port.toString())
 });
