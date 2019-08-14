@@ -1,6 +1,7 @@
 'use strict';
 var Log = require('../model/db.js');
 var dir = require('../../../direcciones.js');
+var axios = require('axios');
 /*
 +----------------------------------------
 | Logs
@@ -21,13 +22,30 @@ exports.getLogs2 = function (req, res) {
 +----------------------------------------
 | Listar Usuarios
 +---------------------------------------- 
-| Operaciones con logs
+| Retorna la lista de usuarios
+| que estan registrados en la base de 
+| datos
 */
 
-exports.getLstClientes = function (req, res) {
+function obtenerClientes() {
+  return new Promise(resolve => {
 
+    axios.get(dir.ipCliente() + "getListaClientes")
+      .then((res) => {
+        //Registrndo en el log
+        Log.insert(0, "Obteniendo el listado de clientes");
+        resolve(res.data);
+      })
+      .catch((error) => {
+        //Registrndo en el log
+        Log.insert(0, "Falló el listado de clientes: " + error);
+        resolve(error);
+      })
+  });
+}
 
-
-  res.send(JSON.stringify(Log.getAllLogs()));
+exports.getLstClientes = async function (req, res) {
+  var retorno = await obtenerClientes();
+  res.send(JSON.stringify(retorno));
 };
 

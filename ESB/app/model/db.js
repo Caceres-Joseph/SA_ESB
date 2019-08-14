@@ -7,9 +7,11 @@
 | Atributos de los logs
 |
 */
-var Log = function (lo) {
-    this.idUsuario = lo.id;
-    this.descripcion = lo.descripcion;
+var Log = function (id, descripcion) {
+    this.idUsuario = id;
+    this.descripcion = descripcion;
+    this.created_at = new Date();
+
 };
 
 
@@ -20,7 +22,7 @@ var Log = function (lo) {
 | Se registran todas las acciones que se vayan realizando
 |
 */
-var Logs = ["sin logs"];
+var Logs = [];
 
  
 
@@ -33,9 +35,12 @@ var Logs = ["sin logs"];
 |
 */
 Log.getAllLogs = function getLogs(result) {
-
     return Logs;
 };
+
+Log.insert= function(id, descripcion){
+    Logs.push(new Log(id,descripcion))
+}
 
 
 module.exports = Log;
