@@ -101,9 +101,30 @@ function obtenerPiloto(ubicacion) {
 +------------------ 
 | 3. Registrar viaje
 */
-function obtenerPiloto(ubicacion) {
+function registrarViaje(ubicacion, piloto) {
+
+
+  let env = {
+    idCliente: ubicacion.id,
+    idPiloto: piloto.idPiloto,
+    posX_cliente: ubicacion.posX,
+    posY_cliente: ubicacion.posY,
+    posX_piloto: piloto.posX,
+    posY_piloto: piloto.posY
+  };
+
   return new Promise(resolve => {
- 
+    axios.post(dir.ipRastreo() + "registrarViaje", env)
+      .then((res) => {
+        //Registrndo en el log
+        Log.insert(ubicacion.id, "Registrando un nuevo viaje");
+        resolve(res.data);
+      })
+      .catch((error) => {
+        //Registrndo en el log
+        Log.insert(-1, "Falló el registro del viaje: " + error);
+        resolve({ id: -1 });
+      })
   });
 }
 /*
@@ -112,17 +133,26 @@ function obtenerPiloto(ubicacion) {
 */
 exports.obtenerUber = async function (req, res) {
   var ubicacion = await obtenerUbicacion(req.body.nombre, req.body.password);
-  
+
   //validando si existe el usuario
-  if (ubicacion.id == -1) 
+  if (ubicacion.id == -1)
     res.send(JSON.stringify("El usuario no está registrado y/o error en usuario/contraseña"));
 
   //buscando un piloto en la ubicación del cliente
-  var piloto= await obtenerPiloto(ubicacion);
-  if (ubicacion.idPiloto == -1) 
+  var piloto = await obtenerPiloto(ubicacion);
+  if (ubicacion.idPiloto == -1)
     res.send(JSON.stringify("Lo sentimos, no hay pilotos disponibles por el momento :("));
 
+    
+  //Registrando el viaje
+  var viaje = await registrarViaje(ubicacion, piloto);
+  if (viaje.id == -1)
+    res.send(JSON.stringify("Lo sentimos, usted ya solicitó un Uber, por favor espere la llegada de éste"));
   console.log(piloto);
 
-  res.send(JSON.stringify("piloto en llegada"));
+  var resp={
+    mensaje:"Solicitud exitosa, en breves momentos llegará su piloto, por favor espere.",
+    datosDelPiloto:piloto
+  }
+  res.send(JSON.stringify(resp));
 };
