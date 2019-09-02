@@ -1,20 +1,5 @@
 'user strict';
 
-/*
-+----------------------------------------
-| Modelo
-+---------------------------------------- 
-| Atributos de los Pilotos
-|
-*/
-var Piloto = function (piloto) {
-    this.idPiloto = piloto.idPiloto;
-    this.nombre = piloto.nombre;
-    this.placas = piloto.placas;
-    this.posX = piloto.posX;
-    this.posY = piloto.posY;
-    this.disponible = piloto.disponible;
-};
 
 
 /*
@@ -47,6 +32,21 @@ for (let i = 0; i < 10; i++) {
     )
 }
 
+/*
++----------------------------------------
+| Modelo
++---------------------------------------- 
+| Atributos de los Pilotos
+|
+*/
+var Piloto = function (piloto) {
+    this.idPiloto = piloto.idPiloto;
+    this.nombre = piloto.nombre;
+    this.placas = piloto.placas;
+    this.posX = piloto.posX;
+    this.posY = piloto.posY;
+    this.disponible = piloto.disponible;
+};
 
 /*
 +----------------------------------------
