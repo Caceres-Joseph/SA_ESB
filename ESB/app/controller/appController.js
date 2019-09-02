@@ -166,6 +166,28 @@ exports.obtenerUber = async function (req, res) {
 | 1. Traer datos del cliente por medio del servicio de clientes
 | 2. Obtener la ubicación del uber 
 */
+
+/*
++------------------ 
+| 2.Estado del a llegada
+*/
+exports.estadoLlegada = async function (req, res) {
+  var cliente = await obtenerUbicacion(req.body.nombre, req.body.password);
+
+  //validando si existe el usuario
+  if (cliente.id == -1)
+    res.send(JSON.stringify("El usuario no está registrado y/o error en usuario/contraseña"));
+
+
+    //console.log(cliente);
+  //Registrando el viaje
+  var estado = await getUbicacionPiloto(cliente);
+  if (estado.id == -1)
+    res.send(JSON.stringify("Lo sentimos, usted no ha solicitado ningún Uber"));
+  
+  res.send(JSON.stringify(estado));
+};
+
 /*
 +------------------ 
 | 2.Ubicación del piloto
@@ -188,24 +210,3 @@ function getUbicacionPiloto(cliente) {
   });
 }
 
-
-/*
-+------------------ 
-| 2.Estado del a llegada
-*/
-exports.estadoLlegada = async function (req, res) {
-  var cliente = await obtenerUbicacion(req.body.nombre, req.body.password);
-
-  //validando si existe el usuario
-  if (cliente.id == -1)
-    res.send(JSON.stringify("El usuario no está registrado y/o error en usuario/contraseña"));
-
-
-    //console.log(cliente);
-  //Registrando el viaje
-  var estado = await getUbicacionPiloto(cliente);
-  if (estado.id == -1)
-    res.send(JSON.stringify("Lo sentimos, usted no ha solicitado ningún Uber"));
-  
-  res.send(JSON.stringify(estado));
-};
