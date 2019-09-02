@@ -1,15 +1,6 @@
 'use strict';
 var Piloto = require('../model/db.js');
 
-/*
-+------------------ 
-| Lista de Pilotos
-+------------------- 
-*/
-
-exports.getLstPilotos = function (req, res) {
-  res.send(JSON.stringify(Piloto.getAllPilotos()));
-};
 
 
 /*
@@ -40,4 +31,16 @@ exports.buscarPiloto = function (req, res) {
   }
 
   res.send(JSON.stringify(retorno));
+};
+
+
+
+/*
++------------------ 
+| Lista de Pilotos
++------------------- 
+*/
+
+exports.getLstPilotos = function (req, res) {
+  res.send(JSON.stringify(Piloto.getAllPilotos()));
 };
