@@ -1,15 +1,7 @@
 'use strict';
 var Cliente = require('../model/db.js');
 
-/*
-+------------------ 
-| Lista de clientes
-+------------------- 
-*/
 
-exports.getLstClientes = function (req, res) {
-  res.send(JSON.stringify(Cliente.getAllCustomers()));
-};
 
 /*
 +------------------ 
@@ -41,4 +33,15 @@ exports.getLocation = function (req, res) {
   }
 
   res.send(JSON.stringify(retorno));
+};
+
+
+/*
++------------------ 
+| Lista de clientes
++------------------- 
+*/
+
+exports.getLstClientes = function (req, res) {
+  res.send(JSON.stringify(Cliente.getAllCustomers()));
 };
