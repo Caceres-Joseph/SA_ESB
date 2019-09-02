@@ -1,18 +1,5 @@
 'user strict';
 
-/*
-+----------------------------------------
-| Modelo
-+---------------------------------------- 
-| Atributos de los clientes
-|
-*/
-var Cliente = function (client) {
-    this.id = client.id;
-    this.nombre = client.nombre;
-    this.edad = client.edad;
-    this.password = client.password;
-};
 
 
 /*
@@ -35,6 +22,19 @@ for (let i = 0; i < 10; i++) {
     )
 }
 
+/*
++----------------------------------------
+| Modelo
++---------------------------------------- 
+| Atributos de los clientes
+|
+*/
+var Cliente = function (client) {
+    this.id = client.id;
+    this.nombre = client.nombre;
+    this.edad = client.edad;
+    this.password = client.password;
+};
 
 /*
 +----------------------------------------
