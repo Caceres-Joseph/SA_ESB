@@ -3,7 +3,7 @@
 
 
 module.exports = function (app) {
-  var Piloto = require('../controller/appController.js');
+  var Piloto = require('../controller/appController.js.js');
   /*
    +----------------------------------------
    | Listado de Pilotos

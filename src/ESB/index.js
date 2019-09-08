@@ -5,7 +5,7 @@
 +---------------------------------------- 
 */
 
-var dir = require('../direcciones.js');
+var dir = require('../../direcciones.js');
 const express = require('express'),
     app = express(),
     bodyParser = require('body-parser');

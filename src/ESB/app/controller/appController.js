@@ -1,6 +1,6 @@
 'use strict';
-var Log = require('../model/db.js');
-var dir = require('../../../direcciones.js');
+var Log = require('../model/db.js.js');
+var dir = require('../../../../direcciones.js');
 var axios = require('axios');
 /*
 +----------------------------------------

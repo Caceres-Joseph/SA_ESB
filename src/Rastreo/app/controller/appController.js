@@ -1,5 +1,5 @@
 'use strict';
-var Viaje = require('../model/db.js');
+var Viaje = require('../model/db.js.js');
 
 /*
 +------------------ 

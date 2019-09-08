@@ -1,7 +1,7 @@
 'use strict';
 
 
-var logs = require('../controller/appController.js');
+var logs = require('../controller/appController.js.js');
 
 module.exports = function (app) {
 

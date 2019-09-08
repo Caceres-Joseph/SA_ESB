@@ -1,5 +1,5 @@
 'use strict';
-var Cliente = require('../model/db.js');
+var Cliente = require('../model/db.js.js');
 
 /*
 +------------------ 

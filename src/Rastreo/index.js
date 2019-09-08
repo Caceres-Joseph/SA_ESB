@@ -5,7 +5,7 @@
 +---------------------------------------- 
 */
 
-var dir = require('../direcciones.js');
+var dir = require('../../direcciones.js');
 const express = require('express'),
     app = express(),
     bodyParser = require('body-parser');
@@ -19,7 +19,7 @@ const express = require('express'),
 | estará funcionando el servidor
 */
  
-port = process.env.PORT || dir.portPiloto();
+port = process.env.PORT || dir.portRastreo();
 //Cors 
 app.use(cors()) 
 
@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 
 //Listener
 app.listen(port, function () {
-    console.log('[Servicio Pilotos] web server listening on port: '+port.toString())
+    console.log('[Servicio Rastreo] web server listening on port: '+port.toString())
 });
 /*
 +----------------------------------------

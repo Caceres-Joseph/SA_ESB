@@ -3,7 +3,7 @@
 
 
 module.exports = function (app) {
-  var cliente = require('../controller/appController.js');
+  var cliente = require('../controller/appController.js.js');
  /*
   +----------------------------------------
   | Listado de clientes

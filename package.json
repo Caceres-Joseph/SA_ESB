@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "gulp-fileindex": "^1.0.1",
+    "gulp-util": "^3.0.8",
+    "gulp-zip": "^5.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}

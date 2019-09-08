@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function (app) {
-  var Viaje = require('../controller/appController.js');
+  var Viaje = require('../controller/appController.js.js');
 
 
   /*

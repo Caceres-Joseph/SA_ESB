@@ -1,5 +1,5 @@
 'use strict';
-var Piloto = require('../model/db.js');
+var Piloto = require('../model/db.js.js');
 
 /*
 +------------------ 
